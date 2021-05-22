@@ -8,6 +8,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.asharashenidze.weatherapp.adapters.ViewPagerAdapter
 import com.asharashenidze.weatherapp.fragments.HourFragment
 import com.asharashenidze.weatherapp.fragments.TodayFragment
+import com.asharashenidze.weatherapp.service.IconProvider
 import com.asharashenidze.weatherapp.service.WeatherServiceClient
 
 class MainActivity : AppCompatActivity(), WeatherServiceClient.OnWeatherResponseListener {
@@ -81,14 +82,14 @@ class MainActivity : AppCompatActivity(), WeatherServiceClient.OnWeatherResponse
         val details_humidity = findViewById<TextView>(R.id.text_humidity_value)
         val details_pressure = findViewById<TextView>(R.id.text_pressure_value)
 
-        temperature.text = (Math.round(dailyWeatherResponse.main.temp).toString() + "\u00B0")
-        description.text = (dailyWeatherResponse.weather.get(0).description)
-        city.text = (dailyWeatherResponse.name)
+        temperature?.text = (Math.round(dailyWeatherResponse.main.temp).toString() + "\u00B0")
+        description?.text = (dailyWeatherResponse.weather.get(0).description)
+        city?.text = (dailyWeatherResponse.name)
         IconProvider.setImageInto(dailyWeatherResponse.weather.get(0).icon, icon)
-        details_temperature.text = (Math.round(dailyWeatherResponse.main.temp).toString() + "\u00B0")
-        details_feels.text = (Math.round(dailyWeatherResponse.main.feels_like).toString() + "\u00B0")
-        details_humidity.text = (dailyWeatherResponse.main.humidity.toString() + "%")
-        details_pressure.text = (dailyWeatherResponse.main.pressure.toString())
+        details_temperature?.text = (Math.round(dailyWeatherResponse.main.temp).toString() + "\u00B0")
+        details_feels?.text = (Math.round(dailyWeatherResponse.main.feels_like).toString() + "\u00B0")
+        details_humidity?.text = (dailyWeatherResponse.main.humidity.toString() + "%")
+        details_pressure?.text = (dailyWeatherResponse.main.pressure.toString())
     }
 
     private fun initNavigationButtons() {
