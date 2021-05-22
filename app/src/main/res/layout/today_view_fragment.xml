@@ -86,7 +86,7 @@
                 android:id="@+id/text_temperature_label"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="KEY"
+                android:text="Temperature"
                 android:textColor="@color/white"
                 android:textSize="16sp" />
 
@@ -94,7 +94,6 @@
                 android:id="@+id/text_temperature_value"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="0"
                 android:gravity="right"
                 android:textColor="@color/white"
                 android:textSize="16sp" />
@@ -109,7 +108,7 @@
                 android:id="@+id/text_feelslike_label"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="KEY"
+                android:text="Feels Like"
                 android:textColor="@color/white"
                 android:textSize="16sp" />
 
@@ -117,7 +116,6 @@
                 android:id="@+id/text_feelslike_value"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="0"
                 android:gravity="right"
                 android:textColor="@color/white"
                 android:textSize="16sp" />
@@ -132,7 +130,7 @@
                 android:id="@+id/text_humidity_label"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="KEY"
+                android:text="Humidity"
                 android:textColor="@color/white"
                 android:textSize="16sp" />
 
@@ -140,7 +138,6 @@
                 android:id="@+id/text_humidity_value"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="0"
                 android:textColor="@color/white"
                 android:gravity="right"
                 android:textSize="16sp" />
@@ -155,7 +152,7 @@
                 android:id="@+id/text_pressure_label"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="KEY"
+                android:text="Pressure"
                 android:textColor="@color/white"
                 android:textSize="16sp" />
 
@@ -163,7 +160,6 @@
                 android:id="@+id/text_pressure_value"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="0"
                 android:gravity="right"
                 android:textColor="@color/white"
                 android:textSize="16sp" />
