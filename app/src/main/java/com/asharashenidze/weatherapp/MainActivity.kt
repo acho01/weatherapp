@@ -1,17 +1,18 @@
 package com.asharashenidze.weatherapp
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.asharashenidze.weatherapp.adapters.ViewPagerAdapter
-import com.asharashenidze.weatherapp.fragments.HourFragment
 import com.asharashenidze.weatherapp.fragments.TodayFragment
+import com.asharashenidze.weatherapp.fragmentsHouorlyWeatherResponse.HourFragment
 import com.asharashenidze.weatherapp.service.IconProvider
 import com.asharashenidze.weatherapp.service.WeatherServiceClient
 
-class MainActivity : AppCompatActivity(), WeatherServiceClient.OnWeatherResponseListener {
+class MainActivity : AppCompatActivity() {
 
     private lateinit var todayButton: ImageView
     private lateinit var hourButton: ImageView
@@ -23,7 +24,7 @@ class MainActivity : AppCompatActivity(), WeatherServiceClient.OnWeatherResponse
     private lateinit var viewpager: ViewPager2
 
     private val firstFragment = TodayFragment()
-    private val secondFragment = HourFragment()
+    private lateinit var secondFragment: HourFragment
 
     private val weatherService = WeatherServiceClient()
 
@@ -39,11 +40,12 @@ class MainActivity : AppCompatActivity(), WeatherServiceClient.OnWeatherResponse
 
         initFragments()
         initButtons()
-        weatherService.getDailyWeather("Tbilisi", this)
+        weatherService.getDailyWeather("Tbilisi", firstFragment)
 
     }
 
     private fun initFragments() {
+        secondFragment = HourFragment(cityList, weatherService)
         viewpager = findViewById(R.id.view_pager)
         viewpager.adapter = ViewPagerAdapter(arrayListOf(firstFragment, secondFragment),this)
         setFragment(0, viewpager)
@@ -60,37 +62,46 @@ class MainActivity : AppCompatActivity(), WeatherServiceClient.OnWeatherResponse
         jamButton = findViewById<ImageView>(R.id.btn_jam)
 
         initCityListeners()
-
+//        initCityListeners2()
     }
 
     private fun initCityListeners() {
         for (city in cityList) {
             val cityButton = findViewById<ImageView>(city.buttonId)
             cityButton.setOnClickListener {
-                weatherService.getDailyWeather(city.name, this)
+                weatherService.getDailyWeather(city.name, firstFragment)
+                weatherService.getHourlyWeather(city.name, secondFragment)
             }
         }
     }
 
-    override fun onDailyWeatherResponse(dailyWeatherResponse: DailyWeatherResponse) {
-        val temperature = findViewById<TextView>(R.id.text_temperature)
-        val description = findViewById<TextView>(R.id.text_weather_description)
-        val city = findViewById<TextView>(R.id.text_city)
-        val icon = findViewById<ImageView>(R.id.image_weather)
-        val details_temperature = findViewById<TextView>(R.id.text_temperature_value)
-        val details_feels = findViewById<TextView>(R.id.text_feelslike_value)
-        val details_humidity = findViewById<TextView>(R.id.text_humidity_value)
-        val details_pressure = findViewById<TextView>(R.id.text_pressure_value)
-
-        temperature?.text = (Math.round(dailyWeatherResponse.main.temp).toString() + "\u00B0")
-        description?.text = (dailyWeatherResponse.weather.get(0).description)
-        city?.text = (dailyWeatherResponse.name)
-        IconProvider.setImageInto(dailyWeatherResponse.weather.get(0).icon, icon)
-        details_temperature?.text = (Math.round(dailyWeatherResponse.main.temp).toString() + "\u00B0")
-        details_feels?.text = (Math.round(dailyWeatherResponse.main.feels_like).toString() + "\u00B0")
-        details_humidity?.text = (dailyWeatherResponse.main.humidity.toString() + "%")
-        details_pressure?.text = (dailyWeatherResponse.main.pressure.toString())
+    private fun initCityListeners2() {
+        for (city in cityList) {
+            findViewById<ImageView>(city.buttonId).setOnClickListener {
+                weatherService.getHourlyWeather(city.name, secondFragment)
+            }
+        }
     }
+//
+//    override fun onDailyWeatherResponse(dailyWeatherResponse: DailyWeatherResponse) {
+//        val temperature = findViewById<TextView>(R.id.text_temperature)
+//        val description = findViewById<TextView>(R.id.text_weather_description)
+//        val city = findViewById<TextView>(R.id.text_city)
+//        val icon = findViewById<ImageView>(R.id.image_weather)
+//        val details_temperature = findViewById<TextView>(R.id.text_temperature_value)
+//        val details_feels = findViewById<TextView>(R.id.text_feelslike_value)
+//        val details_humidity = findViewById<TextView>(R.id.text_humidity_value)
+//        val details_pressure = findViewById<TextView>(R.id.text_pressure_value)
+//
+//        temperature?.text = (Math.round(dailyWeatherResponse.main.temp).toString() + "\u00B0")
+//        description?.text = (dailyWeatherResponse.weather.get(0).description)
+//        city?.text = (dailyWeatherResponse.name)
+//        IconProvider.setImageInto(dailyWeatherResponse.weather.get(0).icon, icon)
+//        details_temperature?.text = (Math.round(dailyWeatherResponse.main.temp).toString() + "\u00B0")
+//        details_feels?.text = (Math.round(dailyWeatherResponse.main.feels_like).toString() + "\u00B0")
+//        details_humidity?.text = (dailyWeatherResponse.main.humidity.toString() + "%")
+//        details_pressure?.text = (dailyWeatherResponse.main.pressure.toString())
+//    }
 
     private fun initNavigationButtons() {
         todayButton =  findViewById<ImageView>(R.id.btn_today)
