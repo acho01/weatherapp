@@ -4,18 +4,170 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/night"
     tools:context=".fragments.TodayFragment">
 
     <TextView
-        android:id="@+id/fragment_today"
+        android:id="@+id/text_city"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Today Fragment"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="SOKHUMI"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="@color/white"/>
 
+    <ImageView
+        android:id="@+id/image_weather"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/georgia"
+        android:layout_marginTop="16dp"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_city" />
+
+    <TextView
+        android:id="@+id/text_temperature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="5"
+        android:textSize="48sp"
+        android:layout_marginTop="16dp"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image_weather" />
+
+    <TextView
+        android:id="@+id/text_weather_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Broken Clouds"
+        android:textSize="16sp"
+        android:layout_marginTop="16dp"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_temperature" />
+
+    <TableLayout
+        android:id="@+id/details_table_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        android:stretchColumns="*"
+        app:layout_constraintTop_toBottomOf="@+id/text_weather_description">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:text="DETAILS"
+            />
+
+        <TableRow
+            android:id="@+id/temperature_row"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="16dp">
+
+            <TextView
+                android:id="@+id/text_temperature_label"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="KEY"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/text_temperature_value"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="0"
+                android:gravity="right"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+        </TableRow>
+        <TableRow
+            android:id="@+id/feelslike_row"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="16dp">
+
+            <TextView
+                android:id="@+id/text_feelslike_label"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="KEY"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/text_feelslike_value"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="0"
+                android:gravity="right"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+        </TableRow>
+        <TableRow
+            android:id="@+id/humidity_row"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="16dp">
+
+            <TextView
+                android:id="@+id/text_humidity_label"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="KEY"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/text_humidity_value"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="0"
+                android:textColor="@color/white"
+                android:gravity="right"
+                android:textSize="16sp" />
+        </TableRow>
+        <TableRow
+            android:id="@+id/pressure_row"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="16dp">
+
+            <TextView
+                android:id="@+id/text_pressure_label"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="KEY"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/text_pressure_value"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="0"
+                android:gravity="right"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+        </TableRow>
+    </TableLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

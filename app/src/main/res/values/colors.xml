@@ -10,4 +10,5 @@
     <color name="day">#059FE4</color>
     <color name="night">#240050</color>
     <color name="purple">#FF3700B3</color>
+    <color name="transparent">#0FFF</color>
 </resources>
